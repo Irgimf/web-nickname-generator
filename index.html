@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Nickname Generator</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="toggle-box">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <h2>Web Nickname Generator</h2>
+      <p>Buat nickname unikmu dengan sentuhan web kami ✨</p>
+
+      <input id="nameInput" placeholder="Nama kamu" />
+
+      <select id="hobbyInput">
+        <option value="">— Pilih kategori —</option>
+        <option value="anime">Anime</option>
+        <option value="myth">Mythology</option>
+        <option value="gaming">Gaming</option>
+        <option value="hacker">Hacker</option>
+        <option value="tech">Technology</option>
+        <option value="cute">Cute</option>
+        <option value="animal">Animal</option>
+        <option value="cyberpunk">Cyberpunk</option>
+        <option value="nature">Nature</option>
+        <option value="angelic">Angelic</option>
+        <option value="demon">Demonic</option>
+        <option value="esport">Esport</option>
+      </select>
+
+      <button onclick="generateNick()">Generate Nickname</button>
+
+      <h3>Hasil Nickname:</h3>
+      <div id="results"></div>
+    </div>
+
+    <script src="generatornickname.js"></script>
+    <script>
+      function generateNick() {
+        const name = nameInput.value.trim();
+        const hobby = hobbyInput.value;
+
+        if (!name || !hobby) {
+          alert("Isi nama dan kategori dulu!");
+          return;
+        }
+
+        const data = window.AINick(name, hobby);
+        results.innerHTML = "";
+
+        data.forEach((n) => {
+          const div = document.createElement("div");
+          div.textContent = n;
+          results.appendChild(div);
+        });
+      }
+
+      darkModeToggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark");
+      });
+    </script>
+  </body>
+</html>
