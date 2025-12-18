@@ -838,7 +838,7 @@ function toJP(text) {
 }
 
 //==========================================================
-// HOBBY AI CLASSIFIER → detect theme
+// HOBBY CLASSIFIER → detect theme
 //==========================================================
 
 function detectTheme(hobby) {
@@ -857,11 +857,11 @@ function detectTheme(hobby) {
   if (hobby.includes("punk")) return "cyberpunk";
   if (hobby.includes("esport")) return "esport";
 
-  return "anime"; // default fallback
+  return "anime";
 }
 
 //==========================================================
-// DC Nickname Engine (Fusion + Styled DC output)
+// DC Nickname Engine
 //==========================================================
 
 window.AINick = function (name, hobby) {
@@ -892,15 +892,13 @@ window.AINick = function (name, hobby) {
 
   const fullName = parts.join("");
 
-  // JAPANESE CONVERSION
   const jp = toJP(first + second);
   const jpNick = jp.charAt(0).toUpperCase() + jp.slice(1);
 
-  // pastikan ambil banyak kata tema berbeda
   const themeList = [...DB[hobby]];
-  // acak array
+
   themeList.sort(() => Math.random() - 0.5);
-  // ambil minimal 10 kata unik
+
   const themed = themeList.slice(0, 12);
 
   const suffix = pick(["X", "Z", "01", "99", "Edge", "Core", "Prime"]);
